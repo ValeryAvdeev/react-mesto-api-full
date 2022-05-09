@@ -109,7 +109,7 @@ class Api {
 
 export const api = new Api(
   {
-    baseUrl: 'https://mesto.valery.nomoredomains.work',
+    baseUrl: 'https://api.mesto.valery.nomoredomains.work',
     headers: {
       'Content-Type': 'application/json',
       authorization: `Bearer ${localStorage.getItem("jwt")}`,

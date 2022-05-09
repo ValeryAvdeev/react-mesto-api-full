@@ -3,6 +3,6 @@
   
 Пожалуйста, прикрепите в это описание ссылку на сайт, размещенный на Яндекс.Облаке.
 
-mesto.valery.nomoredomains.work - Домен
+api.mesto.valery.nomoredomains.work - Домен
 
 51.250.80.172 - Api
