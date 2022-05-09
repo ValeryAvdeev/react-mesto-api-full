@@ -2,7 +2,9 @@
 logs
 *.log
 npm-debug.log*
-
+README.md
+package-lock.json
+package.json
 # Dependency directory
 node_modules
 index.http
