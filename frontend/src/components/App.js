@@ -3,7 +3,7 @@ import Main from "./Main";
 import Footer from "./Footer";
 import ImagePopup from "./ImagePopup";
 import {useState, useEffect} from "react";
-import {api} from "../utils/Api";
+import {api, auth} from "../utils/Api";
 import {CurrentUserContext} from '../contexts/CurrentUserContext'
 import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
@@ -39,7 +39,7 @@ function App() {
 
 
   useEffect(() => {
-    if(currentUser.isLoggedIn) {
+    if (currentUser.isLoggedIn) {
       api.getUser()
         .then(res => {
           // setCurrentUser(res)
@@ -56,6 +56,20 @@ function App() {
     }
   }, [currentUser.isLoggedIn])
 
+  useEffect(() => {
+    // const jwt = localStorage.getItem('jwt');
+
+    // if (jwt) {
+      api.getUser()
+        .then((res) => {
+          setCurrentUser((prev) => {
+            return {...prev, ...res.data, isLoggedIn: true};
+          });
+        })
+        .catch((error) => console.log(error));
+    // }
+  }, [])
+  
   const handleCardLike = (card) => {
     // Снова проверяем, есть ли уже лайк на этой карточке
     const isLiked = card.likes.some(i => i._id === currentUser._id);
@@ -132,7 +146,7 @@ function App() {
   const onLogin = (email, password) => {
     api.loginUser(email, password)
       .then((res) => {
-        localStorage.setItem('jwt', res.token);
+        // localStorage.setItem('jwt', res.token);
         setCurrentUser((prev) => {
           return {...prev, isLoggedIn: true, email};
         });
@@ -146,20 +160,6 @@ function App() {
         handleIsInfoToolTip();
       })
   }
-
-  useEffect(() => {
-    const jwt = localStorage.getItem('jwt');
-
-    if (jwt) {
-      api.getUser()
-        .then((res) => {
-          setCurrentUser((prev) => {
-            return {...prev, ...res.data, isLoggedIn: true};
-          });
-        })
-        .catch((error) => console.log(error));
-    }
-  }, [])
 
   const onSingOut = () => {
     setCurrentUser({isLoggedIn: false});

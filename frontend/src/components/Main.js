@@ -7,6 +7,19 @@ function Main(props) {
 
   const currentUser = useContext(CurrentUserContext);
 
+  const card = () => {
+    if (props.cards.length) {
+      return props.cards.map((i) => {
+        <Card key={i._id}
+              onCardClick={props.onCardClick}
+              card={i}
+              onCardLike={props.onCardLike}
+              onCardDelete={props.onCardDelete}
+        />
+      })
+    }
+  }
+
   return (
     <main className="content">
       <section className="profile">
@@ -50,14 +63,7 @@ function Main(props) {
       </section>
       <section className="places">
         {
-          props.cards.map((i) => {
-            return (<Card key={i._id}
-                  onCardClick={props.onCardClick}
-                  card={i}
-                  onCardLike={props.onCardLike}
-                  onCardDelete={props.onCardDelete}
-            />)
-          })
+          card()
         }
       </section>
     </main>
