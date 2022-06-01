@@ -46,6 +46,7 @@ class Api {
   getUser() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
+      credentials: 'include',
     })
       .then(this._handleResponse)
   }
@@ -112,7 +113,7 @@ export const api = new Api(
     baseUrl: 'https://api.mesto.valery.nomoredomains.work',
     headers: {
       'Content-Type': 'application/json',
-      // authorization: `Bearer ${localStorage.getItem("jwt")}`,
+      authorization: `Bearer ${localStorage.getItem("jwt")}`,
     }
   }
 )

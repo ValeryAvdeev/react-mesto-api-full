@@ -57,18 +57,18 @@ function App() {
   }, [currentUser.isLoggedIn])
 
   useEffect(() => {
-    // const jwt = localStorage.getItem('jwt');
-
-    // if (jwt) {
+    const jwt = localStorage.getItem('jwt');
+    console.log(jwt);
+    if (jwt) {
       api.getUser()
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           setCurrentUser((prev) => {
             return {...prev, ...res.data, isLoggedIn: true};
           });
         })
         .catch((error) => console.log(error));
-    // }
+    }
   }, [])
   
   const handleCardLike = (card) => {
