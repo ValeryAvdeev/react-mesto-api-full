@@ -52,7 +52,7 @@ function Register(props) {
       <div className='register__singnin'>
         <p className='register__subtitle'>
           Уже зарегистрированы? <Link
-          to='/sing-in'
+          to='/sign-in'
           className='register__login-link'
         >Войти</Link>
         </p>

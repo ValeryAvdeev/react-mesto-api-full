@@ -134,7 +134,7 @@ function App() {
       .then(() => {
         setPopupImage(resolve);
         setPopupText('Вы успешно зарегистрировались!');
-        nav('/sing-in');
+        nav('/sign-in');
       })
       .catch(() => {
         setPopupImage(reject);
@@ -180,15 +180,15 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
         <Routes>
-          <Route path='/sing-in' element={
+          <Route path='/sign-in' element={
             <>
-              <Header title='Регистрация' route='/sing-up'/>
+              <Header title='Регистрация' route='/sign-up'/>
               <Login onLogin={onLogin}/>
             </>
           }/>
-          <Route path='/sing-up' element={
+          <Route path='/sign-up' element={
             <>
-              <Header title='Вход' route='/sing-in'/>
+              <Header title='Вход' route='/sign-in'/>
               <Register onRegister={onRegister}/>
             </>
           }/>
@@ -196,7 +196,7 @@ function App() {
             <>
               <Header
                 title='Выход'
-                route='/sing-in'
+                route='/sign-in'
                 onClick={onSingOut}
               />
               <ProtectedRoute>
