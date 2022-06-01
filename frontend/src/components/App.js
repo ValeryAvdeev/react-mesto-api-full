@@ -3,7 +3,7 @@ import Main from "./Main";
 import Footer from "./Footer";
 import ImagePopup from "./ImagePopup";
 import {useState, useEffect} from "react";
-import {api, auth} from "../utils/Api";
+import {api} from "../utils/Api";
 import {CurrentUserContext} from '../contexts/CurrentUserContext'
 import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
@@ -62,6 +62,7 @@ function App() {
     // if (jwt) {
       api.getUser()
         .then((res) => {
+          console.log(res);
           setCurrentUser((prev) => {
             return {...prev, ...res.data, isLoggedIn: true};
           });
