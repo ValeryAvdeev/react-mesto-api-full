@@ -7,7 +7,7 @@ function Card(props){
 
   const handleClick = () => props.onCardClick(props.card);
 
-  const isOwn = props.card.owner._id === currentUser._id;
+  const isOwn = props.card.owner === currentUser._id;
 
   const cardDeleteButtonClassName = (
     `button ${isOwn ? 'button_item_delete' : 'button_item_delete-none'}`
@@ -16,8 +16,8 @@ function Card(props){
   const handleLikeClick = () => props.onCardLike(props.card);
 
   // Определяем, есть ли у карточки лайк, поставленный текущим пользователем
-  const isLiked = props.card.likes.some(i => i._id === currentUser._id);
-
+  const isLiked = props.card.likes.some(i => i === currentUser._id);
+  console.log('isLiked CARD ' + isLiked);
   // Создаём переменную, которую после зададим в `className` для кнопки лайка
   const cardLikeButtonClassName = (`button ${ isLiked ? 'button_item_like-active' : 'button_item_like'}`);
   //

@@ -46,7 +46,6 @@ class Api {
   getUser() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
-      credentials: 'include',
     })
       .then(this._handleResponse)
   }

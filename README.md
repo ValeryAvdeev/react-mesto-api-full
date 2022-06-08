@@ -5,4 +5,4 @@
 
 api.mesto.valery.nomoredomains.work - Домен
 
-51.250.80.172 - Api
+51.250.1.11 - Api

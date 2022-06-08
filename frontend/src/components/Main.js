@@ -10,13 +10,13 @@ function Main(props) {
   const card = () => {
     if (props.cards.length) {
       return props.cards.map((i) => {
-        <Card key={i._id}
+        return <Card key={i._id}
               onCardClick={props.onCardClick}
               card={i}
               onCardLike={props.onCardLike}
               onCardDelete={props.onCardDelete}
         />
-      })
+      });
     }
   }
 

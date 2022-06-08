@@ -24,7 +24,7 @@ function Login(props) {
           name="title"
           minLength="10"
           maxLength="30"
-          placeholder="Почта"
+          placeholder="Электронная почта"
           className="login__input"
           id="username"
           required
@@ -34,7 +34,7 @@ function Login(props) {
         <input
           type="password"
           name="password"
-          placeholder="Электронная почта"
+          placeholder="Пароль"
           className="login__input"
           id="password"
           minLength="4"
