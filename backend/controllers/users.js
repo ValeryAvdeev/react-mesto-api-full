@@ -18,12 +18,7 @@ module.exports.login = async (req, res, next) => {
         throw new AuthorizationError('неверный логин или пароль');
       }
       const token = jwt.sign({ _id: user._id }, 'super-strong-secret', { expiresIn: '7d' });
-      // console.log(token);
       res
-        // .cookie('jwt', token, {
-        //   maxAge: 3600000 * 24 * 7,
-        //   httpOnly: true,
-        // })
         .send({ token })
         .end();
     }
@@ -36,7 +31,6 @@ module.exports.getUsers = (req, res, next) => {
   User.find({})
     .then((users) => {
       if (users) {
-        // res.send({ data: users });
         res.send(users);
       } else {
         throw new AuthorizationError('пользователь не найден');
@@ -53,7 +47,6 @@ module.exports.getUserId = async (req, res, next) => {
     if (!userId) {
       throw new NotFoundError('Пользователь по указанному _id не найден');
     }
-    // res.status(200).send({ data: userId });
     res.status(200).send(userId);
   } catch (e) {
     if (e.name === 'CastError') {
@@ -66,9 +59,7 @@ module.exports.getUserId = async (req, res, next) => {
 module.exports.getMe = async (req, res, next) => {
   try {
     const userMe = await User.findById(req.user._id);
-    // console.log(userMe);
     if (userMe) {
-      // res.send({ data: userMe });
       res.send(userMe);
     }
   } catch (e) {
@@ -89,14 +80,6 @@ module.exports.createUser = async (req, res, next) => {
       email, password: hashPassword, name, about, avatar,
     });
 
-    // res.status(200).send({
-    //   user: {
-    //     email: user.email,
-    //     name: user.name,
-    //     about: user.about,
-    //     avatar: user.avatar,
-    //   },
-    // });
     res.status(200).send({
       email: user.email,
       name: user.name,
@@ -122,7 +105,6 @@ module.exports.createMe = (req, res, next) => {
       if (!user) {
         throw new NotFoundError('Пользователь с указанным _id не найден');
       }
-      // res.send({ data: user });
       res.send(user);
     })
     .catch((err) => {
@@ -141,7 +123,6 @@ module.exports.createMeAvatar = (req, res, next) => {
       if (!userAvatar) {
         throw new NotFoundError('Пользователь с указанным _id не найден');
       }
-      // res.send({ data: userAvatar });
       res.send(userAvatar);
     })
     .catch((err) => {

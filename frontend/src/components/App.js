@@ -61,7 +61,6 @@ function App() {
     if (jwt) {
       api.getUser()
         .then((res) => {
-          // console.log(res);
           setCurrentUser((prev) => {
             return {...prev, ...res.data, isLoggedIn: true};
           });
@@ -74,11 +73,9 @@ function App() {
   const handleCardLike = (card) => {
     // Снова проверяем, есть ли уже лайк на этой карточке
     const isLiked = card.likes.some(i => i === currentUser._id);
-    console.log('isLiked' + isLiked);
     // Отправляем запрос в API и получаем обновлённые данные карточки
     return api.changeLikeCardStatus(card._id, !isLiked)
         .then((newCard) => {
-          console.log('newCard' + newCard);
           setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
         })
         .catch(err => console.log(`Ошибка в App.js при лайку карточки ${err}`))
@@ -86,12 +83,9 @@ function App() {
 
   const handleCardDelete = (card) => {
     // Отправляем запрос в API и получаем обновлённые данные карточки
-    console.log('handleCardDelete' + card._id);
     api.deleteCard(card._id)
       .then(() => {
-        console.log('card._id' + card._id);
         setCards((state) => {
-          console.log('state' + state);
           return state.filter((i) => i._id !== card._id)
         })
       })

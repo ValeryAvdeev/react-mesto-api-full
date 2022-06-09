@@ -1,7 +1,13 @@
 class Api {
   constructor(data) {
     this._baseUrl = data.baseUrl;
-    this._headers = data.headers;
+  }
+
+  get _headers () {
+    return {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${localStorage.getItem("jwt")}`,
+    }
   }
 
   _handleResponse = (response) => {
@@ -15,7 +21,6 @@ class Api {
     if (res.ok) {
       return res.json();
     }
-    // return Promise.reject(res.status);
     return res.json().then((data) => {
       const {statusCode} = data;
       const {message} = data.message[0].messages[0]
@@ -110,9 +115,5 @@ class Api {
 export const api = new Api(
   {
     baseUrl: 'https://api.mesto.valery.nomoredomains.work',
-    headers: {
-      'Content-Type': 'application/json',
-      authorization: `Bearer ${localStorage.getItem("jwt")}`,
-    }
   }
 )
