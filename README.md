@@ -3,6 +3,6 @@
   
 Пожалуйста, прикрепите в это описание ссылку на сайт, размещенный на Яндекс.Облаке.
 
-api.mesto.valery.nomoredomains.work - Домен
-
+api.mesto.valery.nomoredomains.work - Домен backend
+mesto.valery.nomoredomains.work - Домен frontend
 51.250.1.11 - Api
